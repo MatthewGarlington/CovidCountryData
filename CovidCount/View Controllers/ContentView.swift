@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
   
     var body: some View {
+        
    
         
         TabView {
@@ -20,7 +21,15 @@ struct ContentView: View {
             }
             
             .tag(0)
+        MapContainerView()
+                .tabItem {
+                    Tab(imageName: "map", text: ("Map"))
+                }
+                
+                .tag(1)
+      
       }
+        
     }
 
 }

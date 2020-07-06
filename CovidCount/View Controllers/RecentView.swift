@@ -8,6 +8,7 @@
 
 
 import SwiftUI
+import FirebaseAuth
 
 
 struct RecentView: View {
@@ -16,12 +17,20 @@ struct RecentView: View {
     @State var isSearchVisible = false
     
     var body: some View {
+    
+       
        
         NavigationView {
+      
         
+            
+            
             VStack{
                 
-              
+                
+                    
+                
+               
                 TotalDataView(totalData: covidFetch.totalData)
                 ListHeaderView()
                 
@@ -41,7 +50,7 @@ struct RecentView: View {
                     }
                 
                 }
-                
+                }
                     
                 
                 
@@ -63,7 +72,7 @@ struct RecentView: View {
                                     }))
         }// End of Navigation View
     }
-}
+
 
 struct RecentView_Previews: PreviewProvider {
     static var previews: some View {

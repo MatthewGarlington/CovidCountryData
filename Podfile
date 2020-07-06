@@ -8,6 +8,7 @@ target 'CovidCount' do
   # Pods for CovidCount
  pod 'SwiftyJSON', '~> 4.0'
 pod 'Alamofire'
+pod 'FirebaseUI'
 
   target 'CovidCountTests' do
     inherit! :search_paths
@@ -18,6 +19,7 @@ pod 'Alamofire'
     # Pods for testing
 pod 'Alamofire'
 pod 'SwiftyJSON'
+pod 'FirebaseUI'
   end
 
 end
