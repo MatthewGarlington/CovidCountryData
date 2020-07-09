@@ -16,6 +16,7 @@ struct RecentView: View {
     @State var searchText = ""
     @State var isSearchVisible = false
     
+    
     var body: some View {
     
        
@@ -34,6 +35,7 @@ struct RecentView: View {
                 TotalDataView(totalData: covidFetch.totalData)
                 ListHeaderView()
                 
+                
                 List{
                     ForEach(covidFetch.allCountries.filter {
                         self.searchText.isEmpty ? true : $0.country.lowercased().contains(self.searchText.lowercased())
@@ -46,6 +48,8 @@ struct RecentView: View {
                             CountryDetailView(countryData: countryData)) {
                         
                             CountryDataRowView(countryData: countryData)
+                            
+                            
                         }
                     }
                 

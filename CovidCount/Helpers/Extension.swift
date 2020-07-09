@@ -15,4 +15,12 @@ extension Int {
         formatter.numberStyle = .decimal
         return formatter.string(from: NSNumber(value: self))!
     }
+    func formatDate() -> String {
+        let formatter = NumberFormatter()
+        formatter.groupingSeparator = "/"
+        formatter.numberStyle = .currencyISOCode
+        return formatter.string(from: NSNumber(value: self))!
+    }
 }
+
+
