@@ -98,6 +98,7 @@ struct LoginView: View {
             SignUpView(showingSignUp: $showingSignUp)
             
         }// End of Second VStack
+        .background(Color("cardBackgroundGray"))
     }
     
     private func login() {

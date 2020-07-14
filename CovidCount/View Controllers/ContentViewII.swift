@@ -9,12 +9,12 @@
 import SwiftUI
 
 
- 
-class Post: Codable, Identifiable {
-    
-    
 
-    
+class Post: Codable, Identifiable {
+
+
+
+
     
 
 
@@ -40,10 +40,10 @@ class Post: Codable, Identifiable {
     }
 struct ContentViewII: View {
     @ObservedObject var fetch = FetchView()
-  
+
     var body: some View {
-        
-   
+
+
         VStack {
                   // 2.
                   List(fetch.todos) { todo in
@@ -56,13 +56,13 @@ struct ContentViewII: View {
                   }.navigationBarTitle("Country List")
         }.onAppear(perform: loaddata)
     }
-      
+
 
 }
 
 class FetchView: ObservableObject {
     @Published var todos = [Post]()
-   
+
     init() {
            let url = URL(string: "https://covidtracking.com/api/states")!
            // 2.
@@ -95,13 +95,13 @@ let task = URLSession.shared.dataTask(with: request) { data, response, error in
     print(String(describing: error))
     return
   }
-  
-        
+
+
     print(String(data: data, encoding: .utf8)!)
-    
-    
+
+
   semaphore.signal()
-    
+
 }
 
 task.resume()
@@ -111,9 +111,9 @@ semaphore.wait()
 }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct ContentViewII_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentViewII()
     }
 }
 

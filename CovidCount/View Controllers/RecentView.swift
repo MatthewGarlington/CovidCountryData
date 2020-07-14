@@ -31,10 +31,8 @@ struct RecentView: View {
                 
                     
                 
-               
-                TotalDataView(totalData: covidFetch.totalData)
                 ListHeaderView()
-                
+                   
                 
                 List{
                     ForEach(covidFetch.allCountries.filter {
@@ -59,7 +57,7 @@ struct RecentView: View {
                 
                 
             }// End of VStack
-            
+       
             .navigationBarTitle("Recent Data", displayMode: .inline)
             .navigationBarItems(trailing:
             
@@ -73,9 +71,12 @@ struct RecentView: View {
                                         
                                     },label: {
                                         Image(systemName: "magnifyingglass")
-                                    }))
+                                    })).background(Color("cardBackgroundGray"))
         }// End of Navigation View
-    }
+    
+    
+    
+    } 
 
 
 struct RecentView_Previews: PreviewProvider {

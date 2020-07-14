@@ -20,6 +20,7 @@ struct StateListHeaderView: View {
                 .font(.subheadline)
                 .frame(width: 60, alignment: .leading)
                 .padding(.leading, 15)
+              
             Spacer()
             
             Text("Positive")
@@ -27,22 +28,27 @@ struct StateListHeaderView: View {
                 .font(.subheadline)
                 .frame(height: 60)
                 .padding(.leading, 5)
+               
             Spacer()
             Text("Deaths")
                 .fontWeight(.bold)
                 .font(.subheadline)
                 .frame(height: 60)
                 .padding(.leading, 5)
+                
             Spacer()
-            Text("Recovered")
+            Text("New Deaths")
                 .fontWeight(.bold)
                 .font(.subheadline)
-                .frame(height: 60)
-                .padding(.leading, 5)
+                .frame(height: 70)
+                .padding(.leading, 15)
+               
             Spacer()
         
          }
-        .background(Color.gray)
+        .background(Color("Color1").opacity(0.2))
+        .cornerRadius(15)
+        .padding(.all, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
          }
         }
      

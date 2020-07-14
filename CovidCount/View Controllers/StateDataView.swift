@@ -27,7 +27,7 @@ struct StateDataView: View {
                         
                     
                    
-                    TotalDataView(totalData: covidFetch.totalData)
+                   
                     StateListHeaderView()
                     
                     List{
@@ -39,12 +39,11 @@ struct StateDataView: View {
                             NavigationLink(
                                 destination:
                                     
-                                    StateDetailView(finalData: finalData)) {
+                                StateDetailView(finalData: finalData)) {
                             
                                 StateDataRowView(finalData: finalData)
                             }
                         }
-                    
                     }
                     }
             }

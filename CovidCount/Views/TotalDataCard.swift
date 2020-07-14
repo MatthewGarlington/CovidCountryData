@@ -33,10 +33,13 @@ struct TotalDataCard: View {
                     .padding(5)
                     .foregroundColor(self.color)
             }// End of Vstack
-            .frame(width:geometry.size.width, height: 80, alignment: .center)
-            .background(Color("cardBackgroundGray"))
-            .cornerRadius(15.0)
+            .padding(.all, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+            .frame(width: 120, height: 60, alignment: .center)
+            .background(Color("Color1").opacity(0.2))
+            .cornerRadius(20)
+            
         }// End of Geometry reader
+        
  
     }
 }

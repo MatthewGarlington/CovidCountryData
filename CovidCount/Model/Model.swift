@@ -7,6 +7,23 @@
 
 import Foundation
 
+struct TotalStateData {
+    
+    let total: Int
+    let positive: Int
+    let hospitalized: Int
+    let death: Int
+    let recovered: Int
+    
+    var fatalityRate: Double {
+        
+        return (100.00 * Double(death)) / Double(positive)
+    }
+    var recoveredRate: Double {
+        
+        return (100.00 * Double(recovered)) / Double(positive)
+    }
+}
 
 
 struct TotalData {
@@ -77,12 +94,30 @@ struct FinalData {
     var death: Int
     var date: Int
     var positive: Int
+    var deathIncrease: Int
+    var onVentilatorCurrently: Int
+    let pending: Int
     
 
 }
+struct HistoricStateData {
+    
+    let state: String
+    let lastUpdateEt: Int
+    let total: Int
+    let death: Int
+    let deathIncrease: Int
+    let hospitalizedCurrently: Int
+    let inIcuCurrently: Int
+    let positive: Int
     
     
     
+}
+
+ 
+    
+    
     
 
 
@@ -94,9 +129,9 @@ struct FinalData {
 
 
 
+let testTotalStateData = TotalStateData(total: 200, positive: 200, hospitalized: 200, death: 200, recovered: 200)
 
-
-let testFinalData = FinalData(negative: 200, lastUpdateEt: "10-1", recovered: 100, state: "MD", death: 200, date: 200, positive: 200)
+let testFinalData = FinalData(negative: 200, lastUpdateEt: "10-1", recovered: 100, state: "MD", death: 200, date: 200, positive: 200, deathIncrease: 200, onVentilatorCurrently: 200, pending: 200)
 
 let testTotalData = TotalData(confirmed: 200, critical: 200, deaths: 200, recovered: 200)
 
@@ -104,5 +139,6 @@ let testCountryData = CountryData(country: "USA", confirmed: 500, critical: 300,
     
 let testStateData = StateData(countrycode: "US", country: "United States of America", state: "Maryland", latitude: 0.0, longitude: 0.0, confirmed: 200, deaths: 200)
 let testValueData = Value(countrycode: "US", country: "United States of America", state: "Maryland", latitude: 0.0, longitude: 0.0, confirmed: 200, deaths: 200)
+let testHistoricStateData = HistoricStateData(state: "MD", lastUpdateEt: 100, total: 200, death: 300, deathIncrease: 100, hospitalizedCurrently: 200, inIcuCurrently: 200, positive: 400)
 
 

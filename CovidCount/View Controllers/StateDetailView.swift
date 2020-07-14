@@ -21,16 +21,20 @@ struct StateDetailView: View {
         VStack {
         VStack{
             
-            StateDetailRow(number: finalData.state, name: "State")
+            StateDetailRow(number: finalData.state, name: "State Abv.")
             StateDetailRow(number: finalData.lastUpdateEt, name: "Last Updated Time")
             StateDetailRow(number: finalData.positive.formatNumber(), name: "Positive", color: .red)
             StateDetailRow(number: finalData.death.formatNumber(), name: "Deaths", color: .red)
-            StateDetailRow(number: finalData.negative.formatNumber(), name: "Negative", color: .green)
-            StateDetailRow(number: finalData.recovered.formatNumber(), name: "Recovered", color: .green)
+            StateDetailRow(number: finalData.deathIncrease.formatNumber(), name: "Daily Death Increase", color: .red)
+            StateDetailRow(number: finalData.onVentilatorCurrently.formatNumber(), name: "Currently on Ventilator", color: .red)
+            StateDetailRow(number: finalData.negative.formatNumber(), name: "Negative", color: .blue)
+            StateDetailRow(number: finalData.recovered.formatNumber(), name: "Recovered", color: .blue)
+           
+            
             
             
         }
-        .background(Color("cardBackgroundGray"))
+        .background(Color("Color1").opacity(0.2))
         .cornerRadius(8)
         .padding()
             
@@ -38,9 +42,8 @@ struct StateDetailView: View {
          
 }
         
-        .navigationTitle("\(finalData.state.uppercased())")
+        .navigationTitle(finalData.state)
         .font(.title)
-        .foregroundColor(.black)
         .padding(.top,2)
     }
 }

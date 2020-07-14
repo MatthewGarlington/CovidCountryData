@@ -19,6 +19,8 @@ class CovidFetchRequest: ObservableObject {
     @Published var allCountries: [CountryData] = []
     @Published var totalData: TotalData = testTotalData
     @Published var finalData: FinalData = testFinalData
+    @Published var totalStateData: TotalStateData = testTotalStateData
+    @Published var allHistoricStateData: [HistoricStateData] = []
     
     let headers: HTTPHeaders = [
         "x-rapidapi-host": "covid-19-data.p.rapidapi.com",
@@ -27,6 +29,8 @@ class CovidFetchRequest: ObservableObject {
    
     init() {
         
+        getHistoricStateData()
+        getCurrentStateTotal()
         getFinalData()
         getAllStatesInfo()
         AllStates()
@@ -248,20 +252,83 @@ func getFinalData() {
                 let death = finalData["death"] as? Int ?? 0
                 let date = finalData["date"] as? Int ?? 0
                 let positive = finalData["positive"] as? Int ?? 0
+                let deathIncrease = finalData["deathIncrease"] as? Int ?? 0
+                let onVentilatorCurrently = finalData["onVentilatorCurrently"] as? Int ?? 0
+                let pending = finalData["pending"] as? Int ?? 0
                 
            
-                let finalObject = FinalData(negative: negative, lastUpdateEt: lastUpdateEt, recovered: recovered, state: state, death: death, date: date, positive: positive)
+                let finalObject = FinalData(negative: negative, lastUpdateEt: lastUpdateEt, recovered: recovered, state: state, death: death, date: date, positive: positive, deathIncrease: deathIncrease, onVentilatorCurrently: onVentilatorCurrently, pending: pending)
                 
                 allFin.append(finalObject)
             }
         }
-    
-        self.allFinal = allFin.sorted(by:  { $0.positive > $1.positive})
+        self.allFinal = allFin.sorted(by:  { $0.deathIncrease > $1.deathIncrease})
+        
+}
+
+}
+    func getCurrentStateTotal() {
+        
+        
+        
+        AF.request("https://covidtracking.com/api/v1/us/daily.json").responseJSON { response in
+            
+            let result = response.data
+          
+            if result != nil {
+                
+                let json = JSON(result!)
+          //      print(json)
+                
+                let total = json[0]["total"].intValue
+                let positive = json[0]["positive"].intValue
+                let hospitalized = json[0]["hospitalized"].intValue
+                let death = json[0]["death"].intValue
+                let recovered = json[0]["recovered"].intValue
+                
+                self.totalStateData = TotalStateData(total: total, positive: positive, hospitalized: hospitalized, death: death, recovered: recovered)
+            } else {
+                self.totalStateData = testTotalStateData
+            }
     }
+    }
+    func getHistoricStateData() {
+        
+        
+        AF.request("https://covidtracking.com/api/v1/states/ca/daily.json").responseJSON { response in
+           
+            let result = response.value
+            var allHistoricStateData: [HistoricStateData] = []
+            if result != nil {
+                
+                    let dataDictionary = result as! [Dictionary<String, Any>]
+                
+                for historicStateData in dataDictionary {
+                    
+                   
+                  
+                    
+                    let state = historicStateData["state"] as? String ?? "error"
+                    let lastUpdateEt = historicStateData["lastUpdateEt"] as? Int ?? 0
+                    let total = historicStateData["total"] as? Int ?? 0
+                    let death = historicStateData["death"] as? Int ?? 0
+                    let deathIncrease = historicStateData["deathIncrease"] as? Int ?? 0
+                    let hospitalizedCurrently = historicStateData["hospitalizedCurrently"] as? Int ?? 0
+                    let inIcuCurrently = historicStateData["inIcuCurrently"] as? Int ?? 0
+                    let positive = historicStateData["positive"] as? Int ?? 0
+                    
+               
+                    let HistoricStateDataObject = HistoricStateData(state: state, lastUpdateEt: lastUpdateEt, total: total, death: death, deathIncrease: deathIncrease, hospitalizedCurrently: hospitalizedCurrently, inIcuCurrently: inIcuCurrently, positive: positive)
+                    
+                    allHistoricStateData.append(HistoricStateDataObject)
+                }
+            }
+            self.allHistoricStateData = allHistoricStateData.sorted(by:  { $0.positive > $1.positive})
+            
+    }
+    
 }
 }
             
 
-                    
-                    
 

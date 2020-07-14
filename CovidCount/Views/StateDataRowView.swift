@@ -36,10 +36,10 @@ struct StateDataRowView: View {
                 .foregroundColor(.red)
                 .padding(.leading, 5)
             Spacer()
-            Text(finalData.recovered.formatNumber())
+            Text(finalData.deathIncrease.formatNumber())
                 .frame(width: 70,height: 40, alignment: .center)
                 .font(.subheadline)
-                .foregroundColor(.green)
+                .foregroundColor(.red)
                 .padding(.trailing, 5)
             Spacer()
            

@@ -15,28 +15,30 @@ struct TotalDataView: View {
             
             HStack {
                 
-                TotalDataCard(number: totalData.confirmed.formatNumber(), name: "Confirmed")
+                TotalDataCard(number: totalData.confirmed.formatNumber(), name: "Confirmed", color: .blue)
                
                 TotalDataCard(number: totalData.critical.formatNumber(), name: "Critical", color: .yellow)
                 
                 TotalDataCard(number: totalData.deaths.formatNumber(), name: "Deaths", color: .red)
                 
-              
+                    
             }
             
             HStack {
                 
                 TotalDataCard(number: String(format: "%.2f", totalData.fatalityRate), name: "Death %", color: .red)
                
-                TotalDataCard(number: totalData.recovered.formatNumber(), name: "Recovered", color: .green)
+                TotalDataCard(number: totalData.recovered.formatNumber(), name: "Recovered", color: .blue)
                 
-                TotalDataCard(number: String(format: "%.2f", totalData.recoveredRate), name: "Recovery %", color: .green)
+                TotalDataCard(number: String(format: "%.2f", totalData.recoveredRate), name: "Rec. %", color: .blue)
                 
               
         }
         } .frame(height: 170)
-        .padding (/*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+        .padding (10)
+        
 }
+    
 }
 
 struct TotalDataView_Previews: PreviewProvider {
